@@ -5,153 +5,128 @@ import Head from "next/head";
 import { withTranslation, i18n } from "@i18n";
 
 export default function Home({ t }) {
-    return (
-        <>
-            <Head>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-                    rel="stylesheet"
-                />
-            </Head>
+  return (
+    <>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      </Head>
 
-            <Box minH="100vh" width="full" fontFamily="Poppins">
-                <Navigation />
-                <Box mt={40}>
-                    <Text
-                        m="0"
-                        textAlign="center"
-                        fontSize="3xl"
-                        fontWeight="semibold"
-                    >
-                        Sveiki atvyke i Emilijos sodyba
-                    </Text>
-                </Box>
-                <Stack
-                    width="full"
-                    isInline
-                    maxW="7xl"
-                    mx="auto"
-                    px="4"
-                    spacing={16}
-                    py={20}
-                >
-                    <Box width="full">
-                        <Text>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore
-                            eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum.
-                        </Text>
-                    </Box>
-                    <Box width="full">
-                        <AspectRatio width="full" ratio={16 / 9}>
-                            <iframe
-                                title="villa video"
-                                src="/videos/emilijos_sodyba_video.mp4"
-                                allowFullScreen
-                            />
-                        </AspectRatio>
-                    </Box>
-                </Stack>
-                <Box>
-                    <AccomodationLocation />
-                </Box>
-            </Box>
-        </>
-    );
+      <Box minH="100vh" width="full" fontFamily="Poppins">
+        <Navigation />
+        <Box mt={40}>
+          <Text m="0" textAlign="center" fontSize="3xl" fontWeight="semibold">
+            Sveiki atvyke i Emilijos sodyba
+          </Text>
+        </Box>
+        <Stack width="full" isInline maxW="7xl" mx="auto" px="4" spacing={16} py={20}>
+          <Box width="full">
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+              in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Text>
+          </Box>
+          <Box width="full">
+            <AspectRatio width="full" ratio={16 / 9}>
+              <iframe title="villa video" src="/videos/emilijos_sodyba_video.mp4" allowFullScreen />
+            </AspectRatio>
+          </Box>
+        </Stack>
+        <Box>
+          <AccomodationLocation />
+        </Box>
+      </Box>
+    </>
+  );
 }
 
 export const I18NExample = withTranslation(["common", "home"])(Home);
 
 function Navigation() {
-    return (
-        <Stack
-            height={20}
-            position="fixed"
-            bg="white"
-            zIndex="20"
-            top="0"
-            left="0"
-            width="full"
-            px="12"
-            isInline
-            alignItems="center"
-            justifyContent="space-between"
-            boxShadow="lg"
-        >
-            <Stack isInline alignItems="center">
-                <Box>
-                    <Text m="0"> Emilijos Sodyba</Text>
-                </Box>
-            </Stack>
-            <Stack isInline alignItems="center" spacing={5}>
-                <LanguageOptions />
-                <Box>
-                    <Text m="0" fontSize="lg" fontWeight="normal">
-                        +37063692435
-                    </Text>
-                </Box>
-            </Stack>
-        </Stack>
-    );
+  return (
+    <Stack
+      height={20}
+      position="fixed"
+      bg="white"
+      zIndex="20"
+      top="0"
+      left="0"
+      width="full"
+      px="12"
+      isInline
+      alignItems="center"
+      justifyContent="space-between"
+      boxShadow="lg"
+    >
+      <Stack isInline alignItems="center">
+        <Box>
+          <Text m="0"> Emilijos Sodyba</Text>
+        </Box>
+      </Stack>
+      <Stack isInline alignItems="center" spacing={5}>
+        <LanguageOptions />
+        <Box>
+          <Text m="0" fontSize="lg" fontWeight="normal">
+            +37063692435
+          </Text>
+        </Box>
+      </Stack>
+    </Stack>
+  );
 }
 
 function AccomodationLocation() {
-    return (
-        <AspectRatio ratio={4 / 1}>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.375295414770757!3d6.5276316452784755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1567723392506!5m2!1sen!2sng"
-                alt="demo"
-            />
-        </AspectRatio>
-    );
+  return (
+    <AspectRatio ratio={4 / 1}>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.375295414770757!3d6.5276316452784755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1567723392506!5m2!1sen!2sng"
+        alt="demo"
+      />
+    </AspectRatio>
+  );
 }
 
 function LanguageOption({ flag, lang }) {
-    const onLanguageChange = () => {
-        i18n.changeLanguage(lang);
-    };
+  const onLanguageChange = () => {
+    i18n.changeLanguage(lang);
+  };
 
-    const isActive = lang === (i18n.language || "lt");
+  const isActive = lang === (i18n.language || "lt");
 
-    return (
-        <Box>
-            <Button
-                variant="unstyled"
-                alignItems="center"
-                justifyContent="center"
-                width="35px"
-                rounded="full"
-                border={isActive ? "2px solid" : "none"}
-                borderColor={isActive ? "black" : "none"}
-                borderWidth={isActive ? "2px" : "0px"}
-                onClick={onLanguageChange}
-            >
-                <Box as="span" fontSize="2xl">
-                    {flag}
-                </Box>
-            </Button>
+  return (
+    <Box>
+      <Button
+        variant="unstyled"
+        alignItems="center"
+        justifyContent="center"
+        width="35px"
+        rounded="full"
+        border={isActive ? "2px solid" : "none"}
+        borderColor={isActive ? "black" : "none"}
+        borderWidth={isActive ? "2px" : "0px"}
+        onClick={onLanguageChange}
+      >
+        <Box as="span" fontSize="2xl">
+          {flag}
         </Box>
-    );
+      </Button>
+    </Box>
+  );
 }
 
 const languages = [
-    { id: 0, lang: "en", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿" },
-    { id: 1, lang: "ru", flag: "🇷🇺" },
-    { id: 2, lang: "lt", flag: "🇱🇹" },
+  { id: 0, lang: "en", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿" },
+  { id: 1, lang: "ru", flag: "🇷🇺" },
+  { id: 2, lang: "lt", flag: "🇱🇹" },
 ];
 
 function LanguageOptions() {
-    return (
-        <Stack isInline alignItems="center" spacing={1}>
-            {languages.map((lang) => (
-                <LanguageOption key={lang.id} {...lang} />
-            ))}
-        </Stack>
-    );
+  return (
+    <Stack isInline alignItems="center" spacing={1}>
+      {languages.map((lang) => (
+        <LanguageOption key={lang.id} {...lang} />
+      ))}
+    </Stack>
+  );
 }
