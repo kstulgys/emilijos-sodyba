@@ -4,7 +4,7 @@ import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
 import { withTranslation, i18n } from "@i18n";
 
-export default function Home({ t }) {
+export function Home({ t }) {
   return (
     <>
       <Head>
@@ -41,7 +41,8 @@ export default function Home({ t }) {
   );
 }
 
-export const I18NExample = withTranslation(["common", "home"])(Home);
+const I18NExample = withTranslation(["common", "home"])(Home);
+export default I18NExample;
 
 function Navigation() {
   return (
@@ -68,7 +69,7 @@ function Navigation() {
         <LanguageOptions />
         <Box>
           <Text m="0" fontSize="lg" fontWeight="normal">
-            +37063692435
+            +370 (611) 10 855
           </Text>
         </Box>
       </Stack>
@@ -79,7 +80,10 @@ function Navigation() {
 function AccomodationLocation() {
   return (
     <AspectRatio ratio={4 / 1}>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.375295414770757!3d6.5276316452784755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1567723392506!5m2!1sen!2sng" />
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2339.233975229509!2d23.756121316093502!3d54.10505582531005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e096a90d1ca70d%3A0x3791eae736d710bf!2sEmilijos%20Sodyba!5e0!3m2!1sen!2slt!4v1623000652352!5m2!1sen!2slt"
+        loading="lazy"
+      />
     </AspectRatio>
   );
 }
