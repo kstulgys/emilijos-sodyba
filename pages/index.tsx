@@ -2,9 +2,8 @@ import React from "react";
 import { Spacer, Flex, AspectRatio, Stack, Box, Text } from "@chakra-ui/react";
 import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
-import { withTranslation, i18n } from "@i18n";
 
-export function Home({ t }) {
+function Home() {
   return (
     <>
       <Head>
@@ -41,8 +40,7 @@ export function Home({ t }) {
   );
 }
 
-const I18NExample = withTranslation(["common", "home"])(Home);
-export default I18NExample;
+export default Home;
 
 function Navigation() {
   return (
@@ -90,10 +88,10 @@ function AccomodationLocation() {
 
 function LanguageOption({ flag, lang }) {
   const onLanguageChange = () => {
-    i18n.changeLanguage(lang);
+    console.log();
   };
 
-  const isActive = lang === (i18n.language || "lt");
+  const isActive = lang === "nnn";
 
   return (
     <Box>
