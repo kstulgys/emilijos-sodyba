@@ -1,0 +1,10 @@
+{
+    "hello": "Labas",
+    "greet": "Labas, {{name}}!",
+    "world": "Pasauli",
+    "documentation": "Dokumentacija",
+    "language": {
+        "lt": "🇱🇹 Lietuviu",
+        "en": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Anglu"
+    }
+}

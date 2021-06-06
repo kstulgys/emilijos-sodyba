@@ -7,8 +7,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const { nextI18NextRewrites } = require("next-i18next/rewrites");
 
 const localeSubpaths = {
-    tr: "tr",
+    lt: "lt",
     en: "en",
+    ru: "ru",
 };
 
 const config = {

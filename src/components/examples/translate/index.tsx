@@ -11,8 +11,8 @@ import { withTranslation, i18n } from "@i18n";
  */
 
 const I18NExampleComponent: React.FC<{ t: TFunction }> = ({ t }) => {
-    const changeLanguage = () => {
-        i18n.changeLanguage(i18n.language === "tr" ? "en" : "tr");
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
     };
     return (
         <div>
