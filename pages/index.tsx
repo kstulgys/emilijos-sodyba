@@ -7,17 +7,19 @@ function Home() {
   return (
     <>
       <Head>
+        <title>Emilijos Sodyba</title>
+        <meta name="description" content="Kaimo turizmas, Emilijos Sodyba" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Box minH="100vh" width="full" fontFamily="Poppins">
+      <Box minH="100vh" fontFamily="Poppins">
         <Navigation />
-        <Box mt={40}>
-          <Text m="0" textAlign="center" fontSize="3xl" fontWeight="semibold">
+        <Box mt={[32, 40]}>
+          <Text as="h1" m="0" textAlign="center" fontSize="3xl" fontWeight="semibold">
             Sveiki atvykę į Emilijos sodybą
           </Text>
         </Box>
-        <Stack width="full" isInline maxW="7xl" mx="auto" px="4" spacing={16} py={20}>
+        <Stack flexDirection={["column", "row"]} width="full" isInline maxW="7xl" mx="auto" px="4" spacing={[0, 16]} py={[10, 20]}>
           <Box width="full">
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -58,12 +60,12 @@ function Navigation() {
       justifyContent="space-between"
       boxShadow="lg"
     >
-      <Stack isInline alignItems="center">
+      <Stack isInline alignItems="center" display={["none", "block"]}>
         <Box>
           <Text m="0">Emilijos Sodyba</Text>
         </Box>
       </Stack>
-      <Stack isInline alignItems="center" spacing={5}>
+      <Stack width={["full", "auto"]} isInline alignItems="center" justifyContent={["center", "flex-end"]} spacing={[0, 5]}>
         <LanguageOptions />
         <Box>
           <Text m="0" fontSize="lg" fontWeight="normal">
@@ -77,7 +79,7 @@ function Navigation() {
 
 function AccomodationLocation() {
   return (
-    <AspectRatio ratio={4 / 1}>
+    <AspectRatio ratio={[1, 4 / 1]}>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2339.233975229509!2d23.756121316093502!3d54.10505582531005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e096a90d1ca70d%3A0x3791eae736d710bf!2sEmilijos%20Sodyba!5e0!3m2!1sen!2slt!4v1623000652352!5m2!1sen!2slt"
         loading="lazy"
@@ -122,7 +124,7 @@ const languages = [
 
 function LanguageOptions() {
   return (
-    <Stack isInline alignItems="center" spacing={1}>
+    <Stack display={["none", "flex"]} isInline alignItems="center" spacing={1}>
       {languages.map((lang) => (
         <LanguageOption key={lang.id} {...lang} />
       ))}
