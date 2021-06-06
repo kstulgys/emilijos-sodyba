@@ -15,7 +15,7 @@ export function Home({ t }) {
         <Navigation />
         <Box mt={40}>
           <Text m="0" textAlign="center" fontSize="3xl" fontWeight="semibold">
-            Sveiki atvyke i Emilijos sodyba
+            Sveiki atvykę į Emilijos sodybą
           </Text>
         </Box>
         <Stack width="full" isInline maxW="7xl" mx="auto" px="4" spacing={16} py={20}>
@@ -62,7 +62,7 @@ function Navigation() {
     >
       <Stack isInline alignItems="center">
         <Box>
-          <Text m="0"> Emilijos Sodyba</Text>
+          <Text m="0">Emilijos Sodyba</Text>
         </Box>
       </Stack>
       <Stack isInline alignItems="center" spacing={5}>
