@@ -1,7 +1,8 @@
 import React from "react";
-import { Spacer, Flex, AspectRatio, Stack, Box, Text } from "@chakra-ui/react";
-import { Header, Main, Cards, Footer, Button } from "@components";
+import { Spacer, Flex, AspectRatio, Stack, Box, Text, Wrap, WrapItem, Button, Icon } from "@chakra-ui/react";
+// import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
+import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "react-icons/fi";
 
 function Home() {
   return (
@@ -12,8 +13,36 @@ function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Box minH="100vh" fontFamily="Poppins">
-        <Navigation />
+      <Box maxH="100vh" height="full" fontFamily="Poppins">
+        <Box objectFit="cover" as="video" autoPlay muted loop id="myVideo" position="fixed" right={0} bottom={0} minW="full" minH="full">
+          <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
+          {/* Your browser does not support HTML5 video. */}
+        </Box>
+        <Stack spacing={0} position="fixed" height="full" color="white" width="full" bottom={0} right={0} bg="rgba(0, 0, 0, 0.75)">
+          <Box px={[4, 20]} pt={32} flex={1}>
+            <Box>
+              <Text m={0} as="h1" fontSize="4xl" fontWeight="semibold">
+                Sveiki atvykę į Emilijos sodybą
+              </Text>
+            </Box>
+            <Box>
+              <Text as="h2" fontSize="md">
+                Vieta jusu poilsiui ir ramybei
+              </Text>
+            </Box>
+          </Box>
+
+          <Wrap px={[4, 20]} pb={[20, 32]} spacing={[4, 7]}>
+            <NavigationItem name="Apie sodybą" icon={FiInfo} />
+            <NavigationItem name="Nameliai" icon={FiHome} />
+            <NavigationItem name="Rezervacija" icon={FiCalendar} />
+            <NavigationItem name="Kontaktai" icon={FiMessageSquare} />
+          </Wrap>
+        </Stack>
+        {/* _4d918b9428fdb69cf2b882f55ad442e1 CNAME _6bd716b4b5f67545dad387312ba1107b.xrchbtpdjs.acm-validations.aws. 
+        @ ANAME d1x70vd2wxvm20.cloudfront.net 
+        www CNAME d1x70vd2wxvm20.cloudfront.net */}
+        {/* <Navigation />
         <Box mt={[32, 40]}>
           <Text as="h1" m="0" textAlign="center" fontSize="3xl" fontWeight="semibold">
             Sveiki atvykę į Emilijos sodybą
@@ -35,10 +64,36 @@ function Home() {
           </Box>
         </Stack>
         <Box>
-          <AccomodationLocation />
-        </Box>
+          <AccomodationLocation /> */}
+        {/* </Box> */}
       </Box>
     </>
+  );
+}
+
+function NavigationItem({ name, icon }) {
+  return (
+    <WrapItem width={["full", 52]}>
+      <Button
+        display="flex"
+        alignItems="center"
+        width="full"
+        borderWidth="4px"
+        rounded="none"
+        borderColor="white"
+        textTransform="uppercase"
+        fontSize={["sm", "xl"]}
+        bg="transparent"
+        variant="outline"
+        height={[12, 16]}
+        _hover={{ color: "gray.900", bg: "white" }}
+      >
+        <Box as="span" mr={3} mb="3px">
+          <Icon as={icon} fontSize="2xl" />
+        </Box>
+        {name}
+      </Button>
+    </WrapItem>
   );
 }
 
