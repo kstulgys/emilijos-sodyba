@@ -5,7 +5,7 @@ import Head from "next/head";
 import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "react-icons/fi";
 import NextLink from "next/link";
 
-function Home() {
+export default function Home() {
   return (
     <>
       <Head>
@@ -15,8 +15,21 @@ function Home() {
       </Head>
 
       <Box maxH="100vh" height="full" fontFamily="Poppins">
-        <Box objectFit="cover" as="video" autoPlay muted loop id="myVideo" position="fixed" right={0} bottom={0} minW="full" minH="full">
-          <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
+        <Box
+          display={["none", "block"]}
+          objectFit="cover"
+          as="video"
+          autoPlay
+          muted
+          loop
+          id="myVideo"
+          position="fixed"
+          right={0}
+          bottom={0}
+          minW="full"
+          minH="full"
+        >
+          <Box as="source" src="/videos/esodyba-landing-video.mp4" type="video/mp4" />
           {/* Your browser does not support HTML5 video. */}
         </Box>
         <Stack spacing={0} position="fixed" height="full" color="white" width="full" bottom={0} right={0} bg="rgba(0, 0, 0, 0.75)">
@@ -26,11 +39,6 @@ function Home() {
             </Box>
           </Stack>
           <Stack px={[4, 20]} spacing={0} justifyContent="center" height="full" pb={[10, 20]}>
-            {/* <Box>
-              <Box as="span" fontSize="7xl">
-                🌼
-              </Box>
-            </Box> */}
             <Box pb={[16]}>
               <Text textAlign={["center", "left"]} m={0} as="h1" fontSize={["2xl", "6xl"]} fontWeight="normal">
                 Sveiki atvykę į Emilijos Sodybą
@@ -42,11 +50,11 @@ function Home() {
               </Box>
             </Box>
 
-            <Wrap spacing={[4, 9]}>
-              <NavigationItem name="Apie sodybą" icon={FiInfo} />
+            <Wrap spacing={[4, 9]} display={["none", "flex"]}>
+              <NavigationItem name="Apie sodybą" icon={FiInfo} href="/about" />
               <NavigationItem name="Nameliai" icon={FiHome} />
               <NavigationItem name="Užimtumas" icon={FiCalendar} />
-              <NavigationItem name="Kontaktai" icon={FiMessageSquare} />
+              <NavigationItem name="Kontaktai" icon={FiMessageSquare} href="/contacts" />
             </Wrap>
           </Stack>
         </Stack>
@@ -55,10 +63,10 @@ function Home() {
   );
 }
 
-function NavigationItem({ name, icon }) {
+function NavigationItem({ name, icon, href = "/" }) {
   return (
     <WrapItem width={["full", 60]}>
-      <NextLink href="/contacts" passHref>
+      <NextLink href={href} passHref>
         <Link
           display="flex"
           alignItems="center"
@@ -83,8 +91,6 @@ function NavigationItem({ name, icon }) {
     </WrapItem>
   );
 }
-
-export default Home;
 
 function Navigation() {
   return (
