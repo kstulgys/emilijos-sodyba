@@ -4,6 +4,34 @@ import { Spacer, Flex, AspectRatio, Stack, Box, Text, Wrap, WrapItem, Button, Ic
 import Head from "next/head";
 import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo, FiArrowLeft } from "react-icons/fi";
 import NextLink from "next/link";
+import { EditorState, convertToRaw } from "draft-js";
+// import { Editor } from "react-draft-wysiwyg";
+import dynamic from "next/dynamic";
+const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), { ssr: false });
+import draftToHtml from "draftjs-to-html";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+function MyEditor() {
+  const [editorState, setState] = React.useState(() => EditorState.createEmpty());
+
+  return (
+    <>
+      <Box minH="xs" mr={20} dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }} />
+      {/* {JSON.stringify(editorState, null, 4)} */}
+      <Box borderWidth="1px" borderColor="gray.300" mr={20}>
+        <Editor
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          editorState={editorState}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={setState}
+        />
+      </Box>
+    </>
+  );
+}
 
 export default function About() {
   return (
@@ -14,22 +42,22 @@ export default function About() {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Stack height="100vh" fontFamily="Poppins" px={20} py={10}>
+      <Stack height="100vh" fontFamily="Poppins" px={20} py={10} spacing={0}>
         <Box>
           <NavigationItem name="Atgal" icon={FiArrowLeft} />
         </Box>
-        <Stack isInline pt={28}>
+        <Stack isInline pt={28} spacing={0}>
           <Box flex={1}>
-            <Text as="h1" fontSize="2xl">
-              Emilijos Sodyba
-            </Text>
+            <MyEditor />
           </Box>
-          <Box flex={1}>
-            <Box rounded="sm" as="video" width="full" height="full" controls>
-              <source src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
+          <Stack flex={1}>
+            <Box>
+              <Box rounded="sm" as="video" width="full" height="full" controls>
+                <source src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </Box>
             </Box>
-          </Box>
+          </Stack>
         </Stack>
       </Stack>
     </>
