@@ -4,8 +4,13 @@ import { Spacer, Flex, AspectRatio, Stack, Box, Text, Wrap, WrapItem, Button, Ic
 import Head from "next/head";
 import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "react-icons/fi";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const { locale, locales, defaultLocale } = router;
+  console.log({ locale, locales, defaultLocale });
+
   return (
     <>
       <Head>

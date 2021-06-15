@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), { ssr: false });
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useRouter } from "next/router";
 
 function MyEditor() {
   const [editorState, setState] = React.useState(() => EditorState.createEmpty());
@@ -33,7 +34,11 @@ function MyEditor() {
   );
 }
 
-export default function About() {
+export default function About(props) {
+  const router = useRouter();
+  const { locale, locales, defaultLocale } = router;
+  console.log({ locale, locales, defaultLocale });
+
   return (
     <>
       <Head>
@@ -48,6 +53,8 @@ export default function About() {
         </Box>
         <Stack isInline pt={28} spacing={0}>
           <Box flex={1}>
+            {JSON.stringify(props, null, 4)}
+
             <MyEditor />
           </Box>
           <Stack flex={1}>
@@ -91,3 +98,21 @@ function NavigationItem({ name, icon }) {
     </NextLink>
   );
 }
+
+export const getStaticProps = ({ locale, locales }) => {
+  return {
+    props: {
+      locale,
+      locales,
+    },
+  };
+};
+
+// export const getServerSideProps = ({ locale, locales }) => {
+//   return {
+//     props: {
+//       locale,
+//       locales,
+//     },
+//   };
+// };
