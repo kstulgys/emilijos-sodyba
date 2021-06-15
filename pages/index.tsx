@@ -131,39 +131,37 @@ function Navigation() {
 }
 
 function LanguageOption({ flag, lang }) {
-  const onLanguageChange = () => {
-    console.log();
-  };
-
-  const isActive = lang === "lt";
+  const router = useRouter();
+  const { locale, locales, defaultLocale } = router;
+  const isActive = lang === locale;
 
   return (
     <Box>
-      <Button
-        variant="unstyled"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        width="40px"
-        height="40px"
-        rounded="full"
-        border={isActive ? "1px solid" : "none"}
-        borderColor={isActive ? "white" : "none"}
-        borderWidth={isActive ? "1px" : "0px"}
-        onClick={onLanguageChange}
-      >
-        <Box as="span" fontSize="2xl" mb="-2px">
-          {flag}
-        </Box>
-      </Button>
+      <NextLink href="/" locale={lang} passHref>
+        <Link
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          width="40px"
+          height="40px"
+          rounded="full"
+          border={isActive ? "1px solid" : "none"}
+          borderColor={isActive ? "white" : "none"}
+          borderWidth={isActive ? "1px" : "0px"}
+          _hover={{}}
+        >
+          <Box as="span" fontSize="2xl" mb="-2px">
+            {flag}
+          </Box>
+        </Link>
+      </NextLink>
     </Box>
   );
 }
 
 const languages = [
-  { id: 2, lang: "lt", flag: "🇱🇹" },
-  { id: 0, lang: "en", flag: "🇬🇧" },
-  { id: 1, lang: "ru", flag: "🇷🇺" },
+  { id: 1, lang: "lt", flag: "🇱🇹" },
+  { id: 2, lang: "en", flag: "🇬🇧" },
 ];
 
 function LanguageOptions() {

@@ -12,6 +12,8 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useRouter } from "next/router";
 
+// matosi ezeras ir valtis
+
 function MyEditor() {
   const [editorState, setState] = React.useState(() => EditorState.createEmpty());
 
@@ -34,10 +36,9 @@ function MyEditor() {
   );
 }
 
-export default function About(props) {
-  const router = useRouter();
-  const { locale, locales, defaultLocale } = router;
-  console.log({ locale, locales, defaultLocale });
+export default function About({ locale, backButtonText }) {
+  //   const router = useRouter();
+  //   const { locale, locales, defaultLocale } = router;
 
   return (
     <>
@@ -49,12 +50,11 @@ export default function About(props) {
 
       <Stack height="100vh" fontFamily="Poppins" px={20} py={10} spacing={0}>
         <Box>
-          <NavigationItem name="Atgal" icon={FiArrowLeft} />
+          <NavigationItem name={backButtonText} icon={FiArrowLeft} />
         </Box>
         <Stack isInline pt={28} spacing={0}>
           <Box flex={1}>
-            {JSON.stringify(props, null, 4)}
-
+            {/* {JSON.stringify(props, null, 4)} */}
             <MyEditor />
           </Box>
           <Stack flex={1}>
@@ -99,14 +99,57 @@ function NavigationItem({ name, icon }) {
   );
 }
 
-export const getStaticProps = ({ locale, locales }) => {
+// export const getStaticProps = ({ locale, locales }) => {
+//   const backButtonText = (() => {
+//     if (locale === "en") {
+//       return "Back";
+//     }
+//     if (locale === "lt") {
+//       return "Atgal";
+//     }
+//   })();
+
+//   return {
+//     props: {
+//       locale,
+//       locales,
+//       backButtonText,
+//     },
+//   };
+// };
+
+export async function getStaticProps({ params, locale, locales }) {
+  //   const SSR = withSSRContext();
+  //   const { data } = await SSR.API.graphql({
+  //     query: getPost,
+  //     variables: {
+  //       id: params.id,
+  //     },
+  //   });
+
+  //   return {
+  //     props: {
+  //       post: data.getPost,
+  //     },
+  //   };
+
+  const backButtonText = (() => {
+    if (locale === "en") {
+      return "Back";
+    }
+    if (locale === "lt") {
+      return "Atgal";
+    }
+  })();
+
   return {
     props: {
       locale,
       locales,
+      backButtonText,
     },
   };
-};
+}
 
 // export const getServerSideProps = ({ locale, locales }) => {
 //   return {
