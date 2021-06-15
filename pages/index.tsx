@@ -6,11 +6,11 @@ import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "re
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Home({ title, subtitle, nav }) {
   const router = useRouter();
   const { locale, locales, defaultLocale } = router;
   console.log({ locale, locales, defaultLocale });
-
+  console.log({ title, subtitle });
   return (
     <>
       <Head>
@@ -46,20 +46,20 @@ export default function Home() {
           <Stack px={[4, 20]} spacing={0} justifyContent="center" height="full" pb={[10, 20]}>
             <Box pb={[16]}>
               <Text textAlign={["center", "left"]} m={0} as="h1" fontSize={["2xl", "6xl"]} fontWeight="normal">
-                Sveiki atvykę į Emilijos Sodybą
+                {title}
               </Text>
               <Box>
                 <Text textAlign={["center", "left"]} as="h2" fontSize={["md", "xl"]}>
-                  Geriausia vieta jūsų poilsiui ir ramybei
+                  {subtitle}
                 </Text>
               </Box>
             </Box>
 
             <Wrap spacing={[4, 9]} display={["none", "flex"]}>
-              <NavigationItem name="Apie sodybą" icon={FiInfo} href="/about" />
-              <NavigationItem name="Nameliai" icon={FiHome} />
-              <NavigationItem name="Užimtumas" icon={FiCalendar} />
-              <NavigationItem name="Kontaktai" icon={FiMessageSquare} href="/contacts" />
+              <NavigationItem name={nav.about} icon={FiInfo} href="/about" />
+              <NavigationItem name={nav.chalet} icon={FiHome} />
+              <NavigationItem name={nav.bookings} icon={FiCalendar} />
+              <NavigationItem name={nav.contacts} icon={FiMessageSquare} href="/contacts" />
             </Wrap>
           </Stack>
         </Stack>
@@ -172,4 +172,51 @@ function LanguageOptions() {
       ))}
     </Stack>
   );
+}
+
+export async function getStaticProps({ params, locale, locales }) {
+  //   const SSR = withSSRContext();
+  //   const { data } = await SSR.API.graphql({
+  //     query: getPost,
+  //     variables: {
+  //       id: params.id,
+  //     },
+  //   });
+
+  //   return {
+  //     props: {
+  //       post: data.getPost,
+  //     },
+  //   };
+
+  const translations = {
+    en: {
+      title: "Welcome to Emilijos Chalet",
+      subtitle: "Best place to relax",
+      nav: {
+        about: "About",
+        chalet: "Chalet",
+        bookings: "Bookings",
+        contacts: "Contacts",
+      },
+    },
+    lt: {
+      title: "Sveiki atvykę į Emilijos Sodybą",
+      subtitle: "Geriausia vieta jūsų poilsiui",
+      nav: {
+        about: "Apie",
+        chalet: "Nameliai",
+        bookings: "Užimtumas",
+        contacts: "Susisiekite",
+      },
+    },
+  };
+
+  return {
+    props: {
+      locale,
+      locales,
+      ...translations[locale],
+    },
+  };
 }
