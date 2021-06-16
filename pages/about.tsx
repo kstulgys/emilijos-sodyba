@@ -1,44 +1,39 @@
 import React from "react";
-import { Spacer, Flex, AspectRatio, Stack, Box, Text, Wrap, WrapItem, Button, Icon, Link } from "@chakra-ui/react";
+import {
+  Spacer,
+  Flex,
+  AspectRatio,
+  Stack,
+  Box,
+  Text,
+  Wrap,
+  WrapItem,
+  Button,
+  Icon,
+  Link,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Input,
+} from "@chakra-ui/react";
 // import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
 import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo, FiArrowLeft } from "react-icons/fi";
 import NextLink from "next/link";
-import { EditorState, convertToRaw } from "draft-js";
-// import { Editor } from "react-draft-wysiwyg";
-import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), { ssr: false });
-import draftToHtml from "draftjs-to-html";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useRouter } from "next/router";
-
-// matosi ezeras ir valtis
-
-function MyEditor() {
-  const [editorState, setState] = React.useState(() => EditorState.createEmpty());
-
-  return (
-    <>
-      <Box minH="xs" mr={20} dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }} />
-      {/* {JSON.stringify(editorState, null, 4)} */}
-      <Box borderWidth="1px" borderColor="gray.300" mr={20}>
-        <Editor
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="wrapperClassName"
-          editorClassName="editorClassName"
-          onEditorStateChange={setState}
-        />
-      </Box>
-    </>
-  );
-}
+import { useAdmin } from "store/useAdmin";
 
 export default function About({ locale, backButtonText }) {
   //   const router = useRouter();
   //   const { locale, locales, defaultLocale } = router;
+  const isAdmin = useAdmin((state) => state.isAdmin);
 
   return (
     <>
@@ -53,10 +48,7 @@ export default function About({ locale, backButtonText }) {
           <NavigationItem name={backButtonText} icon={FiArrowLeft} />
         </Box>
         <Stack isInline pt={28} spacing={0}>
-          <Box flex={1}>
-            {/* {JSON.stringify(props, null, 4)} */}
-            <MyEditor />
-          </Box>
+          <Box flex={1}></Box>
           <Stack flex={1}>
             <Box>
               <Box rounded="sm" as="video" width="full" height="full" controls>
@@ -69,6 +61,10 @@ export default function About({ locale, backButtonText }) {
       </Stack>
     </>
   );
+}
+// const createMarkup = () => ({ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) });
+{
+  /* <Box minH="xs" dangerouslySetInnerHTML={createMarkup()} /> */
 }
 
 function NavigationItem({ name, icon }) {

@@ -64,7 +64,7 @@ export default function Home({ t }: { t: LocaleTranslations }) {
               </Box>
             </Box>
 
-            <Wrap spacing={[4, 9]} display={["none", "flex"]}>
+            <Wrap spacing={[4, 8]} display={["none", "flex"]}>
               <NavigationItem name={t.nav.about} icon={FiInfo} href="/about" />
               <NavigationItem name={t.nav.chalet} icon={FiHome} />
               <NavigationItem name={t.nav.availability} icon={FiCalendar} />
@@ -80,9 +80,10 @@ export default function Home({ t }: { t: LocaleTranslations }) {
 
 function NavigationItem({ name, icon, href = "/" }) {
   return (
-    <WrapItem width={["full", 60]}>
+    <WrapItem>
       <NextLink href={href} passHref>
         <Link
+          px={6}
           display="flex"
           alignItems="center"
           justifyContent="center"
