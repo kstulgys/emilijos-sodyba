@@ -6,11 +6,10 @@ import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "re
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 
-export default function Home({ title, subtitle, nav }) {
+export default function Home({ t }: { t: LocaleTranslations }) {
   const router = useRouter();
   const { locale, locales, defaultLocale } = router;
   console.log({ locale, locales, defaultLocale });
-  console.log({ title, subtitle });
   return (
     <>
       <Head>
@@ -46,20 +45,31 @@ export default function Home({ title, subtitle, nav }) {
           <Stack px={[4, 20]} spacing={0} justifyContent="center" height="full" pb={[10, 20]}>
             <Box pb={[16]}>
               <Text textAlign={["center", "left"]} m={0} as="h1" fontSize={["2xl", "6xl"]} fontWeight="normal">
-                {title}
+                {t.title}
               </Text>
               <Box>
                 <Text textAlign={["center", "left"]} as="h2" fontSize={["md", "xl"]}>
-                  {subtitle}
+                  {t.subtitle}
+                </Text>
+              </Box>
+              <Box mt={14}>
+                <Text textAlign={["center", "left"]} as="h2" fontSize={["md", "xl"]}>
+                  +370 61110 855
+                </Text>
+              </Box>
+              <Box>
+                <Text textAlign={["center", "left"]} as="h2" fontSize={["md", "xl"]}>
+                  Samanio g.12, Šadžiūnų k., Veisiejų sen., LT-67335 Lazdijų r.
                 </Text>
               </Box>
             </Box>
 
             <Wrap spacing={[4, 9]} display={["none", "flex"]}>
-              <NavigationItem name={nav.about} icon={FiInfo} href="/about" />
-              <NavigationItem name={nav.chalet} icon={FiHome} />
-              <NavigationItem name={nav.bookings} icon={FiCalendar} />
-              <NavigationItem name={nav.contacts} icon={FiMessageSquare} href="/contacts" />
+              <NavigationItem name={t.nav.about} icon={FiInfo} href="/about" />
+              <NavigationItem name={t.nav.chalet} icon={FiHome} />
+              <NavigationItem name={t.nav.availability} icon={FiCalendar} />
+              <NavigationItem name={t.nav.neighbourhood} icon={FiCalendar} />
+              <NavigationItem name={t.nav.enquiries} icon={FiMessageSquare} href="/contacts" />
             </Wrap>
           </Stack>
         </Stack>
@@ -174,6 +184,23 @@ function LanguageOptions() {
   );
 }
 
+interface LocaleTranslations {
+  title: string;
+  subtitle: string;
+  nav: {
+    about: string;
+    chalet: string;
+    availability: string;
+    neighbourhood: string;
+    enquiries: string;
+  };
+}
+
+interface HomeTranspations {
+  en: LocaleTranslations;
+  lt: LocaleTranslations;
+}
+
 export async function getStaticProps({ params, locale, locales }) {
   //   const SSR = withSSRContext();
   //   const { data } = await SSR.API.graphql({
@@ -183,21 +210,16 @@ export async function getStaticProps({ params, locale, locales }) {
   //     },
   //   });
 
-  //   return {
-  //     props: {
-  //       post: data.getPost,
-  //     },
-  //   };
-
-  const translations = {
+  const translations: HomeTranspations = {
     en: {
-      title: "Welcome to Emilijos Chalet",
-      subtitle: "Best place to relax",
+      title: "Welcome to chalet Emilija",
+      subtitle: "Family holiday in the country",
       nav: {
         about: "About",
-        chalet: "Chalet",
-        bookings: "Bookings",
-        contacts: "Contacts",
+        chalet: "Chalets",
+        availability: "Availability",
+        neighbourhood: "Neighbourhood",
+        enquiries: "Enquiries",
       },
     },
     lt: {
@@ -206,17 +228,20 @@ export async function getStaticProps({ params, locale, locales }) {
       nav: {
         about: "Apie",
         chalet: "Nameliai",
-        bookings: "Užimtumas",
-        contacts: "Susisiekite",
+        availability: "Užimtumas",
+        neighbourhood: "Kaiminystė",
+        enquiries: "Susisiekite",
       },
     },
   };
+
+  const t: LocaleTranslations = translations[locale];
 
   return {
     props: {
       locale,
       locales,
-      ...translations[locale],
+      t,
     },
   };
 }
