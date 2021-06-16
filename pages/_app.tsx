@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       router.push("/");
       return;
     }
-  }, []);
+  }, [router.asPath]);
 
   return (
     <ChakraProvider>
