@@ -30,10 +30,9 @@ export default function Contacts() {
       <Head>
         <title>Emilijos Sodyba | Kontaktai</title>
         <meta name="description" content="Kaimo turizmas, Emilijos Sodyba" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Stack height="100vh" fontFamily="Poppins" spacing={0}>
+      <Stack height="100vh" spacing={0}>
         <Stack isInline flex={1} spacing={0}>
           <Stack flex={1}>
             <Stack px={[28]} py="10" isInline alignItems="center" justifyContent="space-between">

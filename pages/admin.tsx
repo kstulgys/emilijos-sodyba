@@ -11,14 +11,14 @@ export default function Admin() {
   const router = useRouter();
   const setIsAdmin = useAdmin((state) => state.setIsAdmin);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
+    // router.prefetch("/");
     // setIsAdmin(true);
     const psw = prompt();
     if (psw === process.env.NEXT_PUBLIC_ADMIN_PWD) {
       setIsAdmin(true);
+      router.push("/");
     }
-    router.push("/");
-    return;
   }, []);
 
   return null;

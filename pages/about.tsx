@@ -40,10 +40,9 @@ export default function About({ locale, backButtonText }) {
       <Head>
         <title>Apie | Emilijos Sodyba</title>
         <meta name="description" content="Kaimo turizmas, Emilijos Sodyba" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Stack height="100vh" fontFamily="Poppins" px={20} py={10} spacing={0}>
+      <Stack height="100vh" px={20} py={10} spacing={0}>
         <Box>
           <NavigationItem name={backButtonText} icon={FiArrowLeft} />
         </Box>
