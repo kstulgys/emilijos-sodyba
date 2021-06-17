@@ -6,6 +6,8 @@ import colors from "./foundations/colors";
 
 import fontSizes from "./foundations/fontSizes";
 
+// const www = "@chakra-ui/theme";
+
 /**
  * This file is generated for providing a custom theme to Chakra UI
  *

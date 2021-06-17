@@ -24,7 +24,7 @@ import Head from "next/head";
 import { FiArrowLeft } from "react-icons/fi";
 import NextLink from "next/link";
 
-export default function Contacts() {
+export default function Enquiries() {
   return (
     <>
       <Head>

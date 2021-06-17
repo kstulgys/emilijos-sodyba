@@ -67,10 +67,10 @@ export default function Home({ t }: { t: LocaleTranslations }) {
 
             <Wrap spacing={[4, 8]} display={["none", "flex"]}>
               <NavigationItem name={t.nav.about} icon={FiInfo} href="/about" />
-              <NavigationItem name={t.nav.chalet} icon={FiHome} />
-              <NavigationItem name={t.nav.availability} icon={FiCalendar} />
-              <NavigationItem name={t.nav.neighbourhood} icon={FiCalendar} />
-              <NavigationItem name={t.nav.enquiries} icon={FiMessageSquare} href="/contacts" />
+              <NavigationItem name={t.nav.chalet} icon={FiHome} href="/" />
+              <NavigationItem name={t.nav.availability} icon={FiCalendar} href="/" />
+              <NavigationItem name={t.nav.neighbourhood} icon={FiCalendar} href="/" />
+              <NavigationItem name={t.nav.enquiries} icon={FiMessageSquare} href="/enquiries" />
             </Wrap>
           </Stack>
         </Stack>

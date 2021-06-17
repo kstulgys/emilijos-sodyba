@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import React from "react";
-import { AppProps } from "next/app";
 import {
   ChakraProvider,
   Box,
@@ -14,23 +12,63 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Input,
+  Stack,
+  Textarea,
+  Text,
 } from "@chakra-ui/react";
-import { EditorState, convertToRaw } from "draft-js";
-// import { Editor } from "react-draft-wysiwyg";
-import dynamic from "next/dynamic";
-// const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), { ssr: false });
-// import draftToHtml from "draftjs-to-html";
 import { useAdmin } from "store/useAdmin";
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-// const CKEditor = dynamic(() => import("@ckeditor/ckeditor5-react").then((mod) => mod.CKEditor), { ssr: false });
-// const ClassicEditor = dynamic(() => import("@ckeditor/ckeditor5-build-classic").then(ClassicEditor), { ssr: false });
-// const ClassicEditor = dynamic(() => import("@ckeditor/ckeditor5-build-classic"), { ssr: false });
+import { useRouter } from "next/router";
+
+// function HomeContent() {
+//   return (
+//     <>
+//       <Text>Hello Home</Text>
+//       <Input />
+//     </>
+//   );
+// }
+
+function AboutContent() {
+  return (
+    <Stack>
+      <Input />
+      <Textarea />
+    </Stack>
+  );
+}
+
+function ChaletsContent() {
+  return (
+    <Stack>
+      <Input />
+      <Textarea />
+    </Stack>
+  );
+}
+
+function EnquiriesContent() {
+  return (
+    <Stack>
+      <Input />
+      <Textarea />
+    </Stack>
+  );
+}
+
+function DrawerInputs() {
+  const router = useRouter();
+  // if (router.asPath === "/") return <HomeContent />;
+  if (router.asPath === "/about") return <AboutContent />;
+  if (router.asPath === "/chalets") return <ChaletsContent />;
+  if (router.asPath === "/enquiries") return <EnquiriesContent />;
+  return null;
+}
 
 export function AdminDrawer() {
   const isAdmin = useAdmin((state) => state.isAdmin);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
   if (!isAdmin) return null;
 
   return (
@@ -47,7 +85,7 @@ export function AdminDrawer() {
           <DrawerHeader>Page</DrawerHeader>
 
           <DrawerBody>
-            <MyEditor />
+            <DrawerInputs />
           </DrawerBody>
 
           <DrawerFooter>
@@ -58,66 +96,6 @@ export function AdminDrawer() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
-  );
-}
-
-// function MyEditor() {
-//   const [editorState, setState] = React.useState(() => EditorState.createEmpty());
-
-//   return (
-//     <>
-//       {/* <Box > */}
-//       <Box
-//         as={Editor}
-//         borderWidth="1px"
-//         borderColor="gray.300"
-//         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//         // @ts-ignore
-//         editorState={editorState}
-//         // toolbarClassName="toolbarClassName"
-//         // wrapperClassName="wrapperClassName"
-//         // editorClassName="editorClassName"
-//         onEditorStateChange={setState}
-//       />
-//       {/* </Box> */}
-//     </>
-//   );
-// }
-
-function MyEditor() {
-  const editorRef = React.useRef<any>();
-  const [editorLoaded, setEditorLoaded] = React.useState(false);
-  const { CKEditor, ClassicEditor } = editorRef.current || {};
-
-  React.useEffect(() => {
-    editorRef.current = {
-      CKEditor: require("@ckeditor/ckeditor5-react").CKEditor, //Added .CKEditor
-      ClassicEditor: require("@ckeditor/ckeditor5-build-classic"),
-    };
-    setEditorLoaded(true);
-  }, []);
-
-  const [data, setData] = React.useState("");
-
-  return (
-    <>
-      {editorLoaded ? (
-        <CKEditor
-          editor={ClassicEditor}
-          data={data}
-          onReady={(editor) => {
-            // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setData(data);
-          }}
-        />
-      ) : (
-        <p>Carregando...</p>
-      )}
     </>
   );
 }
