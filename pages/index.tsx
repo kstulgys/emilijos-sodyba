@@ -5,11 +5,13 @@ import Head from "next/head";
 import { FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo } from "react-icons/fi";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useAdmin } from "store/useAdmin";
 
 export default function Home({ t }: { t: LocaleTranslations }) {
   const router = useRouter();
   const { locale, locales, defaultLocale } = router;
   console.log({ locale, locales, defaultLocale });
+
   return (
     <>
       <Head>
