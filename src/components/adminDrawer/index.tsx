@@ -55,6 +55,14 @@ function EnquiriesContent() {
   );
 }
 
+{
+  /* <NavigationItem name={t.nav.about} icon={FiInfo} href="/about" />
+<NavigationItem name={t.nav.chalet} icon={FiHome} href="/chalets" />
+<NavigationItem name={t.nav.availability} icon={FiCalendar} href="/" />
+<NavigationItem name={t.nav.neighbourhood} icon={FiCalendar} href="/" />
+<NavigationItem name={t.nav.enquiries} icon={FiMessageSquare} href="/enquiries" /> */
+}
+
 function DrawerInputs() {
   const router = useRouter();
   // if (router.asPath === "/") return <HomeContent />;
