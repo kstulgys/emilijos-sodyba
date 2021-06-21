@@ -40,20 +40,17 @@ export default function Home({ t }: { t: LocaleTranslations }) {
     <Layout>
       <Navigation />
       <Stack pt={10}>
-        <Box mb={10} px="4">
-          <Text fontSize="2xl" textAlign="center" as="h1">
+        <Box mb={8} px="4">
+          <Text mb={2} fontSize="3xl" textAlign="center" as="h1" fontWeight="normal" lineHeight="short">
             {t.title}
           </Text>
           <Text textAlign="center" as="h3">
             {t.subtitle}
           </Text>
         </Box>
-
-        <Box>
-          <Box as="video" width="full" controls>
-            <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </Box>
+        <Box as="video" width="full" controls poster="/images/video_placeholder.png">
+          <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </Box>
       </Stack>
       {/* <Box height={40} bg="red.300" />
