@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           <Head>
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
           </Head>
-          <Box fontFamily="Poppins">
+          <Box fontFamily="Poppins" bg="gray.100" minH="100vh">
             <AdminDrawer />
             <Component {...pageProps} />
           </Box>
