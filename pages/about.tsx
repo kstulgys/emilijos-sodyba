@@ -20,6 +20,7 @@ import {
   Link,
   useDisclosure,
   Input,
+  Textarea,
 } from "@chakra-ui/react";
 // import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
@@ -44,7 +45,7 @@ export default function About({ t }: { t: LocaleTranslations }) {
           <Text fontSize="2xl">{t.title}</Text>
         </Box>
         <Box>
-          <Text>{t.content}</Text>
+          <Text whiteSpace="pre-line">{t.content}</Text>
         </Box>
         <Box as="video" width="full" controls poster="/images/video_placeholder.png">
           <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
@@ -81,7 +82,8 @@ export async function getStaticProps({ params, locale, locales }) {
     },
     lt: {
       title: "Apie",
-      content: `Sodyba yra įsikūrusi 3 ha teritorijoje Samanio ežero įlankoje šalia Veisiejų regioninio parko – natūrali gamta, draustinio kraštovaizdis, skaidrus ežero vanduo. Penki nameliai, dvi atskiros maudyklės abi su lieptais, dvi valtys ir vandens dviratis – skirta sveciu poilsiui ir pramogoms. Vasaros laikotarpiu  vienu metu gali ilsėtis 26 svečiai. Nuo Druskininkų iki sodybos – 18 km. Nuo Vilniaus – 120 km`,
+      content:
+        "Sodyba yra įsikūrusi 3 ha teritorijoje Samanio ežero įlankoje šalia Veisiejų regioninio parko – natūrali gamta, draustinio kraštovaizdis, skaidrus ežero vanduo. Penki nameliai, dvi atskiros maudyklės abi su lieptais, dvi valtys ir vandens dviratis – skirta sveciu poilsiui ir pramogoms. Vasaros laikotarpiu vienu metu gali ilsėtis 26 svečiai. \n\nNuo Druskininkų iki sodybos – 18 km \nNuo Vilniaus – 120 km",
     },
   };
 

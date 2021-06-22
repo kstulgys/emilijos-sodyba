@@ -141,6 +141,11 @@ function MenuDrawer() {
                     <Image src="/icons/insta-icon.svg" />
                   </Link>
                 </Box>
+                <Box boxSize={10}>
+                  <Link href="https://www.atostogoskaime.lt/apgyvendinimas/emilijos-sodyba" isExternal>
+                    <Image src="/icons/atostogos-kaime.png" />
+                  </Link>
+                </Box>
               </Stack>
             </Stack>
           </DrawerFooter>
