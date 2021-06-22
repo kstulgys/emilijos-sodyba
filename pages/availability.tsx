@@ -31,7 +31,7 @@ import { PhoneIcon, AddIcon, WarningIcon, HamburgerIcon } from "@chakra-ui/icons
 import { Layout } from "@components/layout";
 import { Navigation } from "@components/navigation";
 
-export default function Chalets({ t }: { t: LocaleTranslations }) {
+export default function Availability({ t }: { t: LocaleTranslations }) {
   const router = useRouter();
   const { locale, locales, defaultLocale } = router;
   console.log({ locale, locales, defaultLocale });
@@ -67,11 +67,11 @@ export async function getStaticProps({ params, locale, locales }) {
 
   const translations: AboutTranspations = {
     en: {
-      title: "Chalets",
+      title: "Availability",
       content: `The Chalet Emilija is inspired by traditional Lithuanian family values. We love great gatherings seeing close and more distant relatives and enjoy each others’ company in a tranquil but very meaningful way. We recognise that being together is an enriching experience and building bonds with our loved ones is at heart of what we do`,
     },
     lt: {
-      title: "Nameliai",
+      title: "Užimtumas",
       content: `Sodyba yra įsikūrusi 3 ha teritorijoje Samanio ežero įlankoje šalia Veisiejų regioninio parko – natūrali gamta, draustinio kraštovaizdis, skaidrus ežero vanduo. Penki nameliai, dvi atskiros maudyklės abi su lieptais, dvi valtys ir vandens dviratis – skirta sveciu poilsiui ir pramogoms. Vasaros laikotarpiu  vienu metu gali ilsėtis 26 svečiai. Nuo Druskininkų iki sodybos – 18 km. Nuo Vilniaus – 120 km`,
     },
   };

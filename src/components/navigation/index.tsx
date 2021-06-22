@@ -20,22 +20,27 @@ import {
   Link,
   useDisclosure,
   Input,
+  Image,
 } from "@chakra-ui/react";
 // import { Header, Main, Cards, Footer, Button } from "@components";
 import Head from "next/head";
-import { FiPhone, FiMapPin, FiCalendar, FiMessageSquare, FiMessageCircle, FiHome, FiInfo, FiFacebook, FiInstagram } from "react-icons/fi";
+import { FiPhone, FiArrowLeft, FiHome, FiMapPin, FiCalendar, FiMessageSquare, FiMessageCircle, FiInfo } from "react-icons/fi";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { useAdmin } from "store/useAdmin";
 import { PhoneIcon, AddIcon, WarningIcon, HamburgerIcon } from "@chakra-ui/icons";
 
 export function Navigation() {
+  const router = useRouter();
+  const { locale, locales, defaultLocale, asPath } = router;
+  const showArrowLeft = asPath !== "/";
+
   return (
     <Stack
       isInline
       alignItems="center"
-      px="4"
-      py="2"
+      px={4}
+      py={3}
       bg="#EBCBB7"
       color="gray.900"
       boxShadow="sm"
@@ -44,18 +49,28 @@ export function Navigation() {
       left={0}
       width="full"
     >
-      <Box flex={1}>
-        <MenuDrawer />
-      </Box>
+      <Stack isInline flex={1} alignItems="center" justifyContent="flex-start">
+        {showArrowLeft && (
+          <Box>
+            <Button variant="unstyled" onClick={() => router.push("/")}>
+              <Icon as={FiArrowLeft} fontSize="3xl" />
+            </Button>
+          </Box>
+        )}
+      </Stack>
       <Stack spacing={1.5} isInline alignItems="center" flex={2} justifyContent="center">
         <Box as="span" fontSize="xl">
           🌼
         </Box>
-        <Text textAlign="center" fontWeight="semibold">
-          Emilijos Sodyba
-        </Text>
+        <NextLink href="/" passHref>
+          <Link textAlign="center" fontWeight="semibold">
+            Emilijos Sodyba
+          </Link>
+        </NextLink>
       </Stack>
-      <Box flex={1}></Box>
+      <Stack isInline flex={1} justifyContent="flex-end">
+        <MenuDrawer />
+      </Stack>
     </Stack>
   );
 }
@@ -64,7 +79,7 @@ function MenuDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const router = useRouter();
-  const { locale } = router;
+  const { locale, locales, defaultLocale, asPath } = router;
   const t = translations[locale];
 
   return (
@@ -72,7 +87,7 @@ function MenuDrawer() {
       <Button variant="unstyled" ref={btnRef} colorScheme="teal" onClick={onOpen}>
         <HamburgerIcon fontSize="4xl" />
       </Button>
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
+      <Drawer size="xs" isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent fontFamily="Poppins">
           <DrawerCloseButton />
@@ -103,29 +118,31 @@ function MenuDrawer() {
 
           <DrawerBody px={4} pt={6}>
             <Stack spacing={4}>
-              <NavLink name={t.nav.about} href="/" icon={FiInfo} />
-              <NavLink name={t.nav.chalets} href="/" icon={FiHome} />
-              <NavLink name={t.nav.availability} href="/" icon={FiCalendar} />
-              <NavLink name={t.nav.neighbourhood} href="/" icon={FiMapPin} />
-              <NavLink name={t.nav.enquiries} href="/" icon={FiMessageSquare} />
+              <NavLink name={t.nav.about} href="/about" icon={FiInfo} />
+              <NavLink name={t.nav.chalets} href="/chalets" icon={FiHome} />
+              <NavLink name={t.nav.availability} href="/availability" icon={FiCalendar} />
+              <NavLink name={t.nav.neighbourhood} href="/neighbourhood" icon={FiMapPin} />
+              <NavLink name={t.nav.enquiries} href="/enquiries" icon={FiMessageSquare} />
+            </Stack>
+            <Stack isInline ml="-2">
+              <LanguageOptions />
             </Stack>
           </DrawerBody>
           <DrawerFooter justifyContent="flex-start" p={0}>
             <Stack width="full">
-              <LanguageOptions />
               <Stack bg="gray.100" isInline justifyContent="space-evenly" py={3}>
-                <Box>
-                  <Icon as={FiFacebook} fontSize="4xl" strokeWidth="1" />
+                <Box boxSize={10}>
+                  <Link href="https://www.facebook.com/Kaimo-turizmas-Emilijos-sodyba-1123021504414978" isExternal>
+                    <Image src="/icons/fb-icon.svg" />
+                  </Link>
                 </Box>
-                <Box>
-                  <Icon as={FiInstagram} fontSize="4xl" strokeWidth="1" />
+                <Box boxSize={10}>
+                  <Link href="https://www.instagram.com/emilijos_sodyba" isExternal>
+                    <Image src="/icons/insta-icon.svg" />
+                  </Link>
                 </Box>
               </Stack>
             </Stack>
-            {/* <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button> */}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -137,7 +154,7 @@ function NavLink({ href = "/", name, icon }) {
   return (
     <NextLink href={href} passHref>
       <Link m={0} p={0} display="flex" alignItems="center" fontSize="2xl">
-        <Box as="span" mr={5} pb={1}>
+        <Box as="span" mr={4} pb={1}>
           <Icon as={icon} fontSize="3xl" strokeWidth="1.5" />
         </Box>
         {name}
@@ -147,23 +164,32 @@ function NavLink({ href = "/", name, icon }) {
 }
 
 function LanguageOptions() {
+  const router = useRouter();
+  const { locale, locales, defaultLocale } = router;
+
   return (
-    <Stack isInline alignItems="center" spacing={0} pl={2}>
-      {languages.map((lang) => (
-        <LanguageOption key={lang.id} {...lang} />
+    <Stack isInline alignItems="center" spacing={0}>
+      {locales.map((locale) => (
+        <LanguageOption key={locale} locale={locale} />
       ))}
     </Stack>
   );
 }
 
-function LanguageOption({ flag, lang }) {
+function LanguageOption({ locale }) {
   const router = useRouter();
-  const { locale, locales, defaultLocale } = router;
-  const isActive = lang === locale;
+  const { locale: currentLoacale, defaultLocale } = router;
+  const isActive = locale === currentLoacale;
+  const { asPath } = router;
+
+  const flag = {
+    lt: "🇱🇹",
+    en: "🇬🇧",
+  };
 
   return (
     <Box>
-      <NextLink href="/" locale={lang} passHref>
+      <NextLink href={`/${locale}${asPath}`} locale={locale} passHref>
         <Link
           display="flex"
           alignItems="center"
@@ -177,18 +203,13 @@ function LanguageOption({ flag, lang }) {
           _hover={{}}
         >
           <Box as="span" fontSize="3xl" mb="-2px">
-            {flag}
+            {flag[locale]}
           </Box>
         </Link>
       </NextLink>
     </Box>
   );
 }
-
-const languages = [
-  { id: 1, lang: "lt", flag: "🇱🇹" },
-  { id: 2, lang: "en", flag: "🇬🇧" },
-];
 
 interface LocaleTranslations {
   nav: {

@@ -53,15 +53,6 @@ export default function Home({ t }: { t: LocaleTranslations }) {
           Your browser does not support the video tag.
         </Box>
       </Stack>
-      {/* <Box height={40} bg="red.300" />
-      <Box height={40} bg="red.500" />
-      <Box height={40} bg="red.700" />
-      <Box height={40} bg="red.300" />
-      <Box height={40} bg="red.500" />
-      <Box height={40} bg="red.700" />
-      <Box height={40} bg="red.300" />
-      <Box height={40} bg="red.500" />
-      <Box height={40} bg="red.700" /> */}
     </Layout>
   );
 }
