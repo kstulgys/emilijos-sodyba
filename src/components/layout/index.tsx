@@ -41,7 +41,7 @@ export function Layout({ title = "", description = "", children }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Stack alignItems="center" spacing={0}>
-        <Stack maxW="md" width="full" minH="100vh" bg="white" spacing={0} pt={14}>
+        <Stack maxW="md" width="full" minH="100vh" bg="white" spacing={0} pt={4}>
           {children}
         </Stack>
       </Stack>

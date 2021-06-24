@@ -1,0 +1,12 @@
+type ChaletImage @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  url: String!
+  tempChaletId: ID!
+}
+
+type Chalet @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  translation: AWSJSON!
+  calendar: AWSJSON!
+}
+ 

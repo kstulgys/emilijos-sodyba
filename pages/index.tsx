@@ -30,7 +30,8 @@ import { useAdmin } from "store/useAdmin";
 import { PhoneIcon, AddIcon, WarningIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Layout } from "@components/layout";
 import { Navigation } from "@components/navigation";
-
+// GraphQL endpoint: https://rynf5cnuvzgdrfj4is33lgnz7y.appsync-api.eu-central-1.amazonaws.com/graphql
+// GraphQL API KEY: da2-edhmcxu2jngv7ibnwwzksym23i
 export default function Home({ t }: { t: LocaleTranslations }) {
   const router = useRouter();
   const { locale, locales, defaultLocale } = router;
@@ -38,8 +39,7 @@ export default function Home({ t }: { t: LocaleTranslations }) {
 
   return (
     <Layout>
-      <Navigation />
-      <Stack pt={10}>
+      <Stack px={4}>
         <Box mb={8} px="4">
           <Text mb={2} fontSize="3xl" textAlign="center" as="h1" fontWeight="normal" lineHeight="short">
             {t.title}
@@ -48,7 +48,7 @@ export default function Home({ t }: { t: LocaleTranslations }) {
             {t.subtitle}
           </Text>
         </Box>
-        <Box as="video" width="full" controls poster="/images/video_placeholder.png">
+        <Box rounded="xl" as="video" width="full" controls poster="/images/video_placeholder.png">
           <Box as="source" src="/videos/emilijos_sodyba_video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </Box>

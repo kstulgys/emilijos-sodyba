@@ -36,42 +36,42 @@ export function Navigation() {
   const showArrowLeft = asPath !== "/";
 
   return (
-    <Stack
-      isInline
-      alignItems="center"
-      px={4}
-      py={3}
-      bg="#EBCBB7"
-      color="gray.900"
-      boxShadow="sm"
-      position="fixed"
-      top={0}
-      left={0}
-      width="full"
-    >
-      <Stack isInline flex={1} alignItems="center" justifyContent="flex-start">
-        {showArrowLeft && (
-          <Box>
-            <Button variant="unstyled" onClick={() => router.push("/")}>
-              <Icon as={FiArrowLeft} fontSize="3xl" />
-            </Button>
-          </Box>
-        )}
+    <>
+      <Stack
+        isInline
+        alignItems="center"
+        px={4}
+        bg="#EBCBB7"
+        color="gray.900"
+        boxShadow="sm"
+        position="fixed"
+        top={0}
+        left={0}
+        width="full"
+        height={16}
+      >
+        <Stack isInline flex={1} alignItems="center" justifyContent="flex-start">
+          {showArrowLeft && (
+            <Box>
+              <Button variant="unstyled" onClick={() => router.push("/")}>
+                <Icon as={FiArrowLeft} fontSize="3xl" />
+              </Button>
+            </Box>
+          )}
+        </Stack>
+        <Stack spacing={1.5} isInline alignItems="center" flex={2} justifyContent="center">
+          <NextLink href="/" passHref>
+            <Link textAlign="center" fontWeight="semibold">
+              Emilijos Sodyba
+            </Link>
+          </NextLink>
+        </Stack>
+        <Stack isInline flex={1} justifyContent="flex-end">
+          <MenuDrawer />
+        </Stack>
       </Stack>
-      <Stack spacing={1.5} isInline alignItems="center" flex={2} justifyContent="center">
-        <Box as="span" fontSize="xl">
-          🌼
-        </Box>
-        <NextLink href="/" passHref>
-          <Link textAlign="center" fontWeight="semibold">
-            Emilijos Sodyba
-          </Link>
-        </NextLink>
-      </Stack>
-      <Stack isInline flex={1} justifyContent="flex-end">
-        <MenuDrawer />
-      </Stack>
-    </Stack>
+      <Box height={16} />
+    </>
   );
 }
 

@@ -39,8 +39,7 @@ export default function About({ t }: { t: LocaleTranslations }) {
 
   return (
     <Layout>
-      <Navigation />
-      <Stack pt={10} px={4}>
+      <Stack px={4}>
         <Box>
           <Text fontSize="2xl">{t.title}</Text>
         </Box>
